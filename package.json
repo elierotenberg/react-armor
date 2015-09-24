@@ -1,0 +1,39 @@
+{
+  "name": "LIB-NAME",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elierotenberg/LIB-NAME.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elierotenberg/LIB-NAME/issues"
+  },
+  "homepage": "https://github.com/elierotenberg/LIB-NAME#readme",
+  "private": true,
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-eslint": "^4.1.3",
+    "eslint": "^1.5.1",
+    "eslint-plugin-babel": "^2.1.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-eslint": "^1.0.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "mocha": "^2.3.3",
+    "rimraf": "^2.4.3",
+    "should": "^7.1.0",
+    "source-map-support": "^0.3.2"
+  },
+  "dependencies": {
+    "babel-runtime": "^5.8.25"
+  }
+}
