@@ -1,3 +1,4 @@
 node_modules
 *.pid
 *.lock
+npm-debug.log
