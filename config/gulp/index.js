@@ -1,0 +1,79 @@
+import eslint from 'gulp-eslint';
+import gulp from 'gulp';
+import mocha from 'gulp-mocha';
+import plumber from 'gulp-plumber';
+import rimraf from 'rimraf';
+import path from 'path';
+import sourcemaps from 'gulp-sourcemaps';
+import webpack from 'webpack-stream';
+
+import webpackBrowserDev from '../webpack/browser-dev';
+import webpackBrowserProd from '../webpack/browser-prod';
+import webpackNodeDev from '../webpack/node-dev';
+import webpackNodeProd from '../webpack/node-prod';
+
+const exts = ['js', 'jsx'];
+const src = 'src';
+const entry = path.join(src, 'index.js');
+const sources = exts.map((ext) => path.join(src, '**', `*.${ext}`));
+const dist = 'dist';
+const browser = path.join(dist, 'browser');
+const node = path.join(dist, 'node');
+const __tests__ = '__tests__';
+const tests = exts.map((ext) => path.join(dist, __tests__, '**', `*.${ext}`));
+
+gulp.task('clean', (done) =>
+  rimraf(dist, done)
+);
+
+gulp.task('lint', () =>
+  gulp.src(sources)
+  .pipe(plumber())
+  .pipe(eslint())
+  .pipe(eslint.format())
+);
+
+gulp.task('build-browser-dev', ['clean', 'lint'], () =>
+  gulp.src(entry)
+  .pipe(plumber())
+  .pipe(sourcemaps.init())
+  .pipe(webpack(webpackBrowserDev))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(browser))
+);
+
+gulp.task('build-browser-prod', ['clean', 'lint'], () =>
+  gulp.src(entry)
+  .pipe(plumber())
+  .pipe(sourcemaps.init())
+  .pipe(webpack(webpackBrowserProd))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(browser))
+);
+
+gulp.task('build-node-dev', () =>
+  gulp.src(entry)
+  .pipe(plumber())
+  .pipe(sourcemaps.init())
+  .pipe(webpack(webpackNodeDev))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(node))
+);
+
+gulp.task('build-node-prod', () =>
+  gulp.src(entry)
+  .pipe(plumber())
+  .pipe(sourcemaps.init())
+  .pipe(webpack(webpackNodeProd))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(node))
+);
+
+gulp.task('build', ['test', 'build-node-dev', 'build-node-prod', 'build-browser-dev', 'build-browser-prod']);
+
+gulp.task('test', () =>
+  gulp.src(tests)
+  .pipe(mocha())
+);
+
+gulp.task('default', ['build']);
