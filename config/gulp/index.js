@@ -4,7 +4,6 @@ import mocha from 'gulp-mocha';
 import plumber from 'gulp-plumber';
 import rimraf from 'rimraf';
 import path from 'path';
-import sourcemaps from 'gulp-sourcemaps';
 import webpack from 'webpack-stream';
 
 import webpackBrowserDev from '../webpack/browser-dev';
@@ -20,7 +19,7 @@ const dist = 'dist';
 const browser = path.join(dist, 'browser');
 const node = path.join(dist, 'node');
 const __tests__ = '__tests__';
-const tests = exts.map((ext) => path.join(dist, __tests__, '**', `*.${ext}`));
+const tests = exts.map((ext) => path.join(src, __tests__, '**', `*.${ext}`));
 
 gulp.task('clean', (done) =>
   rimraf(dist, done)
@@ -36,36 +35,28 @@ gulp.task('lint', () =>
 gulp.task('build-browser-dev', ['clean', 'lint'], () =>
   gulp.src(entry)
   .pipe(plumber())
-  .pipe(sourcemaps.init())
   .pipe(webpack(webpackBrowserDev))
-  .pipe(sourcemaps.write())
   .pipe(gulp.dest(browser))
 );
 
 gulp.task('build-browser-prod', ['clean', 'lint'], () =>
   gulp.src(entry)
   .pipe(plumber())
-  .pipe(sourcemaps.init())
   .pipe(webpack(webpackBrowserProd))
-  .pipe(sourcemaps.write())
   .pipe(gulp.dest(browser))
 );
 
 gulp.task('build-node-dev', () =>
   gulp.src(entry)
   .pipe(plumber())
-  .pipe(sourcemaps.init())
   .pipe(webpack(webpackNodeDev))
-  .pipe(sourcemaps.write())
   .pipe(gulp.dest(node))
 );
 
 gulp.task('build-node-prod', () =>
   gulp.src(entry)
   .pipe(plumber())
-  .pipe(sourcemaps.init())
   .pipe(webpack(webpackNodeProd))
-  .pipe(sourcemaps.write())
   .pipe(gulp.dest(node))
 );
 

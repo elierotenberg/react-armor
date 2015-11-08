@@ -5,27 +5,33 @@ export default {
   context: path.join(__dirname, '..', '..', '..'),
   target: 'web',
   debug: false,
-  devtool: 'inline-source-map',
+  devtool: 'cheap-inline-source-map',
   output: {
     filename: 'index.min.js',
   },
   module: {
     loaders: [
       {
-        test: /\.js[x]?/,
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json-loader',
+      },
+      {
+        test: /\.js[x]?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           ignore: ['node_modules', 'dist'],
           presets: ['./config/babel/browser-prod'],
-          sourceMaps: 'inline',
         },
       },
     ],
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
       mangle: { except: ['GeneratorFunction'] },
     }),
   ],
