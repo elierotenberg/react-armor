@@ -48,7 +48,6 @@ module.exports = {
     require('babel-plugin-transform-proto-to-assign'),
     require('babel-plugin-transform-regenerator'),
     require('babel-plugin-transform-runtime'),
-    require('babel-plugin-transform-strict-mode'),
     require('babel-plugin-transform-undefined-to-void'),
   ],
 };
