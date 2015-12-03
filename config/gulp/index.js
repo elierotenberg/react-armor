@@ -63,7 +63,7 @@ gulp.task('build-node-prod', () =>
 gulp.task('build', ['test', 'build-node-dev', 'build-node-prod', 'build-browser-dev', 'build-browser-prod']);
 
 gulp.task('test', () =>
-  gulp.src(tests)
+  gulp.src(tests, { read: false })
   .pipe(mocha())
 );
 
