@@ -2,11 +2,13 @@ import path from 'path';
 import webpack from 'webpack';
 
 export default {
+  entry: path.join(__dirname, '..', '..', '..', 'src', 'index.js'),
   context: path.join(__dirname, '..', '..', '..'),
   target: 'node',
   debug: true,
   devtool: 'eval-source-map',
   output: {
+    path: path.join(__dirname, '..', '..', '..', 'dist', 'node'),
     filename: 'index.js',
     libraryTarget: 'commonjs',
   },

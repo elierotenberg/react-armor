@@ -31,7 +31,7 @@ module.exports = {
     // 'babel-plugin-transform-es2015-block-scoped-functions',
     // 'babel-plugin-transform-es2015-block-scoping',
     ['babel-plugin-transform-es2015-classes', { loose: true }],
-    // ['babel-plugin-transform-es2015-computed-properties', { loose: true }],
+    ['babel-plugin-transform-es2015-computed-properties', { loose: true }],
     // 'babel-plugin-transform-es2015-constants',
     ['babel-plugin-transform-es2015-destructuring', { loose: true }],
     // ['babel-plugin-transform-es2015-for-of', { loose: true }],
@@ -52,4 +52,5 @@ module.exports = {
       'method': 'coroutine',
     }],
   ],
+  sourceMaps: 'both',
 };

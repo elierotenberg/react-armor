@@ -4,7 +4,7 @@ import mocha from 'gulp-mocha';
 import plumber from 'gulp-plumber';
 import rimraf from 'rimraf';
 import path from 'path';
-import webpack from 'webpack-stream';
+import webpack from 'webpack';
 
 import webpackBrowserDev from '../webpack/browser-dev';
 import webpackBrowserProd from '../webpack/browser-prod';
@@ -13,11 +13,8 @@ import webpackNodeProd from '../webpack/node-prod';
 
 const exts = ['js', 'jsx'];
 const src = 'src';
-const entry = path.join(src, 'index.js');
 const sources = exts.map((ext) => path.join(src, '**', `*.${ext}`));
 const dist = 'dist';
-const browser = path.join(dist, 'browser');
-const node = path.join(dist, 'node');
 const __tests__ = '__tests__';
 const tests = exts.map((ext) => path.join(src, __tests__, '**', `*.${ext}`));
 
@@ -32,32 +29,40 @@ gulp.task('lint', () =>
   .pipe(eslint.format())
 );
 
-gulp.task('build-browser-dev', ['clean', 'lint'], () =>
-  gulp.src(entry)
-  .pipe(plumber())
-  .pipe(webpack(webpackBrowserDev))
-  .pipe(gulp.dest(browser))
+gulp.task('build-browser-dev', ['clean', 'lint'], (cb) =>
+  webpack(webpackBrowserDev, (err) => {
+    if(err) {
+      return cb(err);
+    }
+    cb(null);
+  })
 );
 
-gulp.task('build-browser-prod', ['clean', 'lint'], () =>
-  gulp.src(entry)
-  .pipe(plumber())
-  .pipe(webpack(webpackBrowserProd))
-  .pipe(gulp.dest(browser))
+gulp.task('build-browser-prod', ['clean', 'lint'], (cb) =>
+  webpack(webpackBrowserProd, (err) => {
+    if(err) {
+      return cb(err);
+    }
+    cb(null);
+  })
 );
 
-gulp.task('build-node-dev', () =>
-  gulp.src(entry)
-  .pipe(plumber())
-  .pipe(webpack(webpackNodeDev))
-  .pipe(gulp.dest(node))
+gulp.task('build-node-dev', (cb) =>
+  webpack(webpackNodeDev, (err) => {
+    if(err) {
+      return cb(err);
+    }
+    cb(null);
+  })
 );
 
-gulp.task('build-node-prod', () =>
-  gulp.src(entry)
-  .pipe(plumber())
-  .pipe(webpack(webpackNodeProd))
-  .pipe(gulp.dest(node))
+gulp.task('build-node-prod', (cb) =>
+  webpack(webpackNodeProd, (err) => {
+    if(err) {
+      return cb(err);
+    }
+    cb(null);
+  })
 );
 
 gulp.task('build', ['test', 'build-node-dev', 'build-node-prod', 'build-browser-dev', 'build-browser-prod']);

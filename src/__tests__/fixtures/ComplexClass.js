@@ -23,8 +23,13 @@ const SEVEN = 7;
 @autobind
 class Complex extends Base {
   @multiply(SEVEN)
+  static multiplyByFortyFive(v) {
+    return FIVE * v;
+  }
+
+  @multiply(1 / SEVEN)
   multiplyByFortyFive() {
-    return FIVE * this.v;
+    return SEVEN * this.constructor.multiplyByFortyFive(this.v);
   }
 }
 
