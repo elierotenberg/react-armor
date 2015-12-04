@@ -29,41 +29,17 @@ gulp.task('lint', () =>
   .pipe(eslint.format())
 );
 
-gulp.task('build-browser-dev', ['clean', 'lint'], (cb) =>
-  webpack(webpackBrowserDev, (err) => {
-    if(err) {
-      return cb(err);
-    }
-    cb(null);
-  })
-);
+function build(webpackConfig) {
+  return (cb) => webpack(webpackConfig, (err) => !err || cb(err));
+}
 
-gulp.task('build-browser-prod', ['clean', 'lint'], (cb) =>
-  webpack(webpackBrowserProd, (err) => {
-    if(err) {
-      return cb(err);
-    }
-    cb(null);
-  })
-);
+gulp.task('build-browser-dev', ['clean', 'lint'], build(webpackBrowserDev));
 
-gulp.task('build-node-dev', (cb) =>
-  webpack(webpackNodeDev, (err) => {
-    if(err) {
-      return cb(err);
-    }
-    cb(null);
-  })
-);
+gulp.task('build-browser-prod', ['clean', 'lint'], build(webpackBrowserProd));
 
-gulp.task('build-node-prod', (cb) =>
-  webpack(webpackNodeProd, (err) => {
-    if(err) {
-      return cb(err);
-    }
-    cb(null);
-  })
-);
+gulp.task('build-node-dev', ['clean', 'lint'], build(webpackNodeDev));
+
+gulp.task('build-node-prod', ['clean', 'lint'], build(webpackNodeProd));
 
 gulp.task('build', ['test', 'build-node-dev', 'build-node-prod', 'build-browser-dev', 'build-browser-prod']);
 
