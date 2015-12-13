@@ -1,5 +1,6 @@
 import eslint from 'gulp-eslint';
 import gulp from 'gulp';
+import gutil from 'gulp-util';
 import mocha from 'gulp-mocha';
 import plumber from 'gulp-plumber';
 import rimraf from 'rimraf';
@@ -29,17 +30,42 @@ gulp.task('lint', () =>
   .pipe(eslint.format())
 );
 
-function build(webpackConfig) {
-  return (cb) => webpack(webpackConfig, (err) => !err || cb(err));
+function build(webpackConfig, name) {
+  return (cb) => webpack(webpackConfig, (err, stats) => {
+    if(err) {
+      throw new gutil.PluginError(`build-${name}`, err);
+    }
+    gutil.log(`[build-${name}]`, stats.toString({
+      colors: true,
+      hash: false,
+      version: false,
+      timings: true,
+      assets: false,
+      chunks: true,
+      chunkModules: false,
+      modules: false,
+      cached: false,
+      reasons: false,
+      source: false,
+      errorDetails: true,
+      chunkOrigins: false,
+      modulesSort: false,
+      chunksSort: false,
+      assetsSort: false,
+    }));
+    cb();
+  });
 }
 
-gulp.task('build-browser-dev', ['clean', 'lint'], build(webpackBrowserDev));
+gulp.task('build-browser-dev', ['clean', 'lint'], build(webpackBrowserDev, 'browser-dev'));
 
-gulp.task('build-browser-prod', ['clean', 'lint'], build(webpackBrowserProd));
+gulp.task('build-browser-prod', ['clean', 'lint'], build(webpackBrowserProd, 'browser-prod'));
 
-gulp.task('build-node-dev', ['clean', 'lint'], build(webpackNodeDev));
+gulp.task('build-node-dev', ['clean', 'lint'], build(webpackNodeDev, 'node-dev'));
 
-gulp.task('build-node-prod', ['clean', 'lint'], build(webpackNodeProd));
+gulp.task('build-node-prod', ['clean', 'lint'], build(webpackNodeProd, 'node-prod'));
+
+gulp.task('build', ['build-node-dev', 'build-node-prod', 'build-browser-dev', 'build-browser-prod']);
 
 gulp.task('build', ['test', 'build-node-dev', 'build-node-prod', 'build-browser-dev', 'build-browser-prod']);
 

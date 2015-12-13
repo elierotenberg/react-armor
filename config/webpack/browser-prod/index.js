@@ -6,7 +6,7 @@ export default {
   context: path.join(__dirname, '..', '..', '..'),
   target: 'web',
   debug: false,
-  devtool: 'cheap-inline-source-map',
+  devtool: 'source-map',
   output: {
     path: path.join(__dirname, '..', '..', '..', 'dist', 'browser'),
     filename: 'index.min.js',
