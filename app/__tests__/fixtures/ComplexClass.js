@@ -33,4 +33,6 @@ class Complex extends Base {
   }
 }
 
-export default Complex;
+const x = Complex;
+
+export default x;

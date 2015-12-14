@@ -14,6 +14,7 @@ describe('sanity', () => {
     should(inst.v).be.exactly(TEN);
     const multiplyByFortyFive = inst.multiplyByFortyFive;
     should(multiplyByFortyFive()).be.exactly(TEN * THIRTYFIVE);
+    should(ComplexClass.multiplyByFortyFive(TEN)).be.exactly(TEN * THIRTYFIVE);
   });
 });
 

@@ -2,7 +2,7 @@ node_modules
 *.pid
 *.lock
 npm-debug.log
-src
+app
 config
 gulpfile.js
 README.md
