@@ -20,6 +20,7 @@ module.exports = {
     'babel-plugin-transform-exponentiation-operator',
     'babel-plugin-transform-object-rest-spread',
     'babel-plugin-transform-flow-strip-types',
+    'babel-plugin-transform-react-jsx',
     'babel-plugin-transform-eval',
     // 'babel-plugin-transform-jscript',
     'babel-plugin-transform-object-assign',
