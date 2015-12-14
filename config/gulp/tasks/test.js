@@ -22,7 +22,10 @@ function sync(cb) {
 function createTest(platform, env) {
   return (cb) => {
     gulp.src(path.join(dist, platform, env, '**', '__tests__', '**', '*.js'), { read: false })
-      .pipe(mocha({ reporter: 'spec' }))
+      .pipe(mocha({
+        require: ['source-map-support/register'],
+        reporter: 'spec',
+      }))
       .pipe(sync(cb));
   };
 }
