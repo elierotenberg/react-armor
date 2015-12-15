@@ -50,5 +50,4 @@ module.exports = {
     'babel-plugin-transform-es2015-unicode-regex',
     'babel-plugin-transform-es2015-modules-commonjs',
   ],
-  sourceMaps: 'both',
 };
