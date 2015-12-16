@@ -258,7 +258,7 @@
     "react/jsx-indent-props": [1, 2], //Validate props indentation in JSX
     "react/jsx-key": 1, // Validate JSX has key prop when in array or iterator
     "react/jsx-max-props-per-line": 0, //Limit maximum of props on a single line in JSX
-    "react/jsx-no-bind": 1, // Prevent usage of .bind() and arrow functions in JSX props
+    "react/jsx-no-bind": 0, // Prevent usage of .bind() and arrow functions in JSX props
     "react/jsx-no-duplicate-props": 1, //Prevent duplicate properties in JSX
     "react/jsx-no-literals": 1, //Prevent usage of unwrapped JSX strings
     "react/jsx-no-undef": 1, //Disallow undeclared variables in JSX
