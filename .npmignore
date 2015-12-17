@@ -1,8 +1,10 @@
-node_modules
+/node_modules
 *.pid
 *.lock
 npm-debug.log
-app
-config
-gulpfile.js
-README.md
+/app
+/config
+/gulpfile.js
+/README.md
+!dist
+!package.json

@@ -2,8 +2,8 @@
   "name": "__LIB_NAME__",
   "version": "0.0.0",
   "description": "__DESCRIPTION__",
-  "main": "dist/node/prod/index.js",
-  "browser": "dist/browser/prod/index.js",
+  "main": "dist/node/prod/app/index.js",
+  "browser": "dist/browser/prod/app/index.js",
   "scripts": {
     "test": "gulp test"
   },
