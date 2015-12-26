@@ -13,21 +13,21 @@ const root = path.join(
   '..', // /
 );
 
-const app = path.join(root, 'app');
+const lib = path.join(root, 'lib');
 
 const sources = [
-  path.join(app, '**', '*.jsx'),
-  path.join(app, '**', '*.js'),
+  path.join(lib, '**', '*.jsx'),
+  path.join(lib, '**', '*.js'),
 ];
 
-const misc = sources.map((source) => `!${source}`).concat(path.join(app, '**', '*'));
+const misc = sources.map((source) => `!${source}`).concat(path.join(lib, '**', '*'));
 
 const dist = path.join(root, 'dist');
 
 function createCopy(platform, env) {
   return () => gulp.src(misc)
-  .pipe(changed(path.join(dist, platform, env, 'app'), { hasChanged: changed.compareSha1Digest }))
-  .pipe(gulp.dest(path.join(dist, platform, env, 'app')));
+  .pipe(changed(path.join(dist, platform, env, 'lib'), { hasChanged: changed.compareSha1Digest }))
+  .pipe(gulp.dest(path.join(dist, platform, env, 'lib')));
 }
 
 function createBuild(platform, env) {
@@ -35,9 +35,9 @@ function createBuild(platform, env) {
     .pipe(plumber({
       errorHandler: (err) => console.error(err.stack),
     }))
-    .pipe(changed(path.join(dist, platform, env, 'app'), { extension: '.js', hasChanged: changed.compareSha1Digest }))
+    .pipe(changed(path.join(dist, platform, env, 'lib'), { extension: '.js', hasChanged: changed.compareSha1Digest }))
     .pipe(babel(Object.assign({}, babelConfig[platform][env], { sourceMaps: 'both', retainLines: true })))
-    .pipe(gulp.dest(path.join(dist, platform, env, 'app')))
+    .pipe(gulp.dest(path.join(dist, platform, env, 'lib')))
   ;
 }
 

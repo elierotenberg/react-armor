@@ -8,7 +8,7 @@ const app = path.join(
   '..', // /config/gulp
   '..', // /config/
   '..', // /
-  'app', // /app/
+  'lib', // /lib/
 );
 
 export default () =>
