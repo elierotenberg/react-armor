@@ -9,7 +9,6 @@ module.exports = {
     'babel-plugin-syntax-jsx',
     'babel-plugin-syntax-object-rest-spread',
     'babel-plugin-syntax-trailing-function-commas',
-    'babel-plugin-transform-async-to-generator',
     ['babel-plugin-transform-async-to-module-method', {
       'module': 'bluebird',
       'method': 'coroutine',
