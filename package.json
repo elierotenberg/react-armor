@@ -1,7 +1,7 @@
 {
-  "name": "__LIB_NAME__",
+  "name": "react-armor",
   "version": "0.0.0",
-  "description": "__DESCRIPTION__",
+  "description": "Protect your DOM from third-party tampering!",
   "main": "dist/node/prod/lib/index.js",
   "browser": "dist/browser/lib/app/index.js",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/__AUTHOR__/__LIB_NAME__.git"
+    "url": "git+https://github.com/elierotenberg/react-armor.git"
   },
-  "author": "__AUTHOR__",
-  "license": "__LICENSE__",
+  "author": "Elie Rotenberg <elie@rotenberg.io>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/__AUTHOR__/__LIB_NAME__/issues"
+    "url": "https://github.com/elierotenberg/react-armor/issues"
   },
-  "homepage": "https://github.com/__AUTHOR__/__LIB_NAME__#readme",
+  "homepage": "https://github.com/elierotenberg/react-armor#readme",
   "private": true,
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
@@ -82,6 +82,9 @@
     "gulp-util": "^3.0.7",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-element-to-jsx-string": "^2.2.0",
     "rimraf": "^2.5.0",
     "run-sequence": "^1.1.5",
     "should": "^8.1.1",
@@ -93,5 +96,9 @@
     "babel-runtime": "^6.3.19",
     "bluebird": "^3.1.1",
     "lodash": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   }
 }
