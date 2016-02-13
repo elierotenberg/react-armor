@@ -82,9 +82,9 @@
     "gulp-util": "^3.0.7",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
+    "postcss": "^5.0.15",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-element-to-jsx-string": "^2.2.0",
     "rimraf": "^2.5.0",
     "run-sequence": "^1.1.5",
     "should": "^8.1.1",
@@ -95,7 +95,8 @@
     "babel-polyfill": "^6.3.14",
     "babel-runtime": "^6.3.19",
     "bluebird": "^3.1.1",
-    "lodash": "^4.0.0"
+    "lodash": "^4.0.0",
+    "react-traverse": "0.0.2"
   },
   "peerDependencies": {
     "react": "^0.14.7",

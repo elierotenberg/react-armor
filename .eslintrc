@@ -191,7 +191,6 @@
       "WhileStatement",
       "WithStatement",
       "ExportAllDeclaration",
-      "ExportSpecifier",
       "ImportNamespaceSpecifier"
     ], //disallow use of certain syntax in code
     "no-spaced-func": 1, //disallow space between function identifier and application (fixable)
