@@ -96,7 +96,8 @@
     "babel-runtime": "^6.3.19",
     "bluebird": "^3.1.1",
     "lodash": "^4.0.0",
-    "react-traverse": "0.0.2"
+    "react-traverse": "0.0.2",
+    "seedrandom": "^2.4.2"
   },
   "peerDependencies": {
     "react": "^0.14.7",
